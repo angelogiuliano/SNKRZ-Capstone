@@ -2,7 +2,7 @@ import "./Navbar.css";
 
 export const Navbar = () => {
   return (
-    <div className="position-fixed w-100">
+    <div className="w-100">
       <nav className="navbar">
         <div className="d-flex align-items-center">
           <a href="/" className="m-0 ms-4 oswald-font">
