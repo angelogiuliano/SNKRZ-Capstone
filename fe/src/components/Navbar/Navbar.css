@@ -1,0 +1,57 @@
+.navbar {
+background-color: white;
+}
+
+.gradient {
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* Imposta un gradiente lineare che va dal bianco al trasparente verso il basso */
+}
+
+.oswald-font {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+input {
+    height: 30px;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.input-container {
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+ion-icon {
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.button {
+    border: 1px solid black;
+    border-radius: 0;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.button:hover {
+    color: white;
+    background-color: black;
+}
