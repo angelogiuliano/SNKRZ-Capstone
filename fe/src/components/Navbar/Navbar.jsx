@@ -14,8 +14,8 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="login-signup d-flex me-4 gap-2">
-          <button className="button">Login</button>
-          <button className="button">Registrati</button>
+          <button className="log-btn">Login</button>
+          <button className="log-btn">Registrati</button>
         </div>
       </nav>
       <div className="gradient"></div>

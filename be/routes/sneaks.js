@@ -5,7 +5,7 @@ const router = express.Router();
 const sneaks = new SneaksAPI();
 
 router.get("/mostPopular", (req, res) => {
-  sneaks.getMostPopular(10, (err, products) => {
+  sneaks.getMostPopular(50, (err, products) => {
     if (err) {
       return res.status(500).send({
         statusCode: 500,
