@@ -51,7 +51,7 @@ ion-icon {
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.button:hover {
+.log-btn:hover {
     color: white;
     background-color: black;
 }

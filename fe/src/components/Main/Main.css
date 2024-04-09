@@ -1,15 +1,1 @@
-body {
-    overflow: hidden;
-}
 
-.slick-list {
-  overflow: visible !important;
-}
-
-.slick-track div {
-  height: 400px;
-}
-
-.slick-dots {
-  bottom: -50px !important;
-}
