@@ -8,14 +8,17 @@ const port = 3001;
 const app = express();
 
 // import routes
-const sneaksRoute = require('./routes/sneaks')
-
+const sneaksRoute = require("./routes/sneaks");
+const usersRoute = require("./routes/users");
+const loginRoute = require('./routes/login')
 
 // middlewares
 app.use(express.json());
 app.use(cors());
 
-app.use("/", sneaksRoute)
+app.use("/", sneaksRoute);
+app.use("/", usersRoute);
+app.use("/", loginRoute);
 
 // db
 mongoose.connect(process.env.MONGODB_URL);

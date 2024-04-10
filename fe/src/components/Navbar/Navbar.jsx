@@ -1,32 +1,49 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
-  const [searchedItem, setSearchedItem] = useState('')
+  const [searchedItem, setSearchedItem] = useState("");
   const navigate = useNavigate();
 
+  const session = localStorage.getItem("auth");
+
   const onChange = async (e) => {
-    if (e.target.value !== '') {
-      setSearchedItem(e.target.value)
+    if (e.target.value !== "") {
+      setSearchedItem(e.target.value);
     } else {
-      navigate('/')
+      navigate("/");
     }
   };
 
   const navigateFunction = () => {
-    navigate(`/products/${searchedItem}`)
+    navigate(`/products/${searchedItem}`);
+  };
+
+  const handleLogin = () => {
+    localStorage.setItem("auth", "");
+    navigate("/");
+  };
+
+  const handleSignUp = () => {
+    localStorage.setItem("auth", "");
+    navigate("/signUp");
+  };
+
+  const handleLogout = () => {
+    localStorage.setItem("auth", "");
+    navigate("/");
   };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchedItem) {
-        navigateFunction(searchedItem)
+        navigateFunction(searchedItem);
       }
-    }, 500)
+    }, 500);
 
-    return () => clearTimeout(timeoutId)
-  }, [searchedItem])
+    return () => clearTimeout(timeoutId);
+  }, [searchedItem]);
 
   return (
     <div className="w-100">
@@ -35,19 +52,33 @@ export const Navbar = () => {
           <a href="/" className="m-0 ms-4 oswald-font">
             SNKRZ
           </a>
-          <div className="input-container ms-4 ">
-            <ion-icon name="search"></ion-icon>
-            <input
-              onChange={onChange}
-              name="navbar-input"
-              placeholder="Cerca.."
-              type="text"
-            />
-          </div>
+          {session && (
+            <div className="input-container ms-4 ">
+              <ion-icon name="search"></ion-icon>
+              <input
+                onChange={onChange}
+                name="navbar-input"
+                placeholder="Cerca.."
+                type="text"
+              />
+            </div>
+          )}
         </div>
         <div className="login-signup d-flex me-4 gap-2">
-          <button className="log-btn">Login</button>
-          <button className="log-btn">Registrati</button>
+          {!session ? (
+            <>
+              <button onClick={() => handleLogin()} className="log-btn">
+                Login
+              </button>
+              <button onClick={() => handleSignUp()} className="log-btn">
+                Registrati
+              </button>
+            </>
+          ) : (
+            <button onClick={() => handleLogout()} className="log-btn">
+              Logout
+            </button>
+          )}
         </div>
       </nav>
       <div className="gradient"></div>
