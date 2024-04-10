@@ -32,4 +32,18 @@ router.get('/getDetails/:styleID', (req, res) => {
 })
 })
 
+router.get('/getProducts/:name', (req, res) => {
+  const {name} = req.params
+
+  sneaks.getProducts(name, 10, (err, products) => {
+    if (err) {
+      return res.status(500).send({
+        statusCode: 500,
+        message: "Internal server error",
+      });
+    }
+    res.status(200).json(products);
+  })
+})
+
 module.exports = router;
