@@ -12,7 +12,7 @@ export const Navbar = () => {
     if (e.target.value !== "") {
       setSearchedItem(e.target.value);
     } else {
-      navigate("/");
+      navigate("/home");
     }
   };
 
@@ -22,7 +22,7 @@ export const Navbar = () => {
 
   const handleLogin = () => {
     localStorage.setItem("auth", "");
-    navigate("/");
+    navigate("/login");
   };
 
   const handleSignUp = () => {
@@ -32,7 +32,7 @@ export const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.setItem("auth", "");
-    navigate("/");
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export const Navbar = () => {
     <div className="w-100">
       <nav className="navbar">
         <div className="d-flex align-items-center">
-          <a href="/" className="m-0 ms-4 oswald-font">
+          <a href="/home" className="m-0 ms-4 oswald-font">
             SNKRZ
           </a>
           {session && (

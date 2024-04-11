@@ -10,7 +10,6 @@ export const Welcome = (props) => {
       if (timer > 0) {
         setTimer(timer - 1);
       }
-      console.log(timer);
     }, 1000);
 
     return () => clearTimeout(timeoutId);
