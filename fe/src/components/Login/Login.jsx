@@ -16,7 +16,7 @@ export const Login = () => {
     } else {
       navigate("/");
     }
-  }, [session]);
+  }, [session, navigate]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
