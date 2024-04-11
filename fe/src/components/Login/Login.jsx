@@ -1,22 +1,32 @@
 import { LoginForm } from "./LoginForm/LoginForm";
 import { SignUpForm } from "./SignUpForm/SignUpForm";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Login = () => {
   const [toggleShowForm, setToggleShowForm] = useState(false);
 
-  const session = localStorage.getItem('auth')
+  const session = localStorage.getItem("auth");
   const navigate = useNavigate();
-  console.log(session);
+  const location = useLocation();
 
   useEffect(() => {
     if (session) {
-        navigate('/home')
+      navigate("/home");
     } else {
-        navigate('/')
+      navigate("/");
     }
-  }, [session])
+  }, [session]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const showSignUp = params.get("showSignUp");
+    if (showSignUp === "true") {
+      setToggleShowForm(false);
+    } else {
+      setToggleShowForm(true)
+    }
+  }, [location])
 
   return (
     <div className="container">
@@ -24,13 +34,13 @@ export const Login = () => {
         <div className="col-md-6">
           <h2 className="text-center text-dark mt-5">SNKRZ Login</h2>
           <div className="card my-5">
-            {toggleShowForm && (
+            {!toggleShowForm && (
               <SignUpForm
                 toggleShowForm={toggleShowForm}
                 setToggleShowForm={setToggleShowForm}
               />
             )}
-            {!toggleShowForm && (
+            {toggleShowForm && (
               <LoginForm
                 toggleShowForm={toggleShowForm}
                 setToggleShowForm={setToggleShowForm}

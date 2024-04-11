@@ -27,7 +27,7 @@ export const Navbar = () => {
 
   const handleSignUp = () => {
     localStorage.setItem("auth", "");
-    navigate("/signUp");
+    navigate("/?showSignUp=true");
   };
 
   const handleLogout = () => {
