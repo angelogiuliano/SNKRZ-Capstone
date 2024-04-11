@@ -17,7 +17,7 @@ export const Welcome = (props) => {
   });
 
   return (
-    <div className={timer > 0 ? "mx-5" : "invisible"}>
+    <div className={timer > 0 ? "mx-5" : "d-none"}>
       <Alert variant="success">Welcome, {firstName + " " + lastName}</Alert>
     </div>
   );

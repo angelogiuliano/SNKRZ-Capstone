@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import axios from 'axios'
+import axios from "axios";
+import './LoginForm.css'
+import banner from '../../../imgs/Welcome.png'
 
 export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
   const [formData, setFormData] = useState({});
@@ -37,13 +39,15 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="card-body cardbody-color p-lg-5">
-      <div className="text-center">
+    <form
+      onSubmit={onSubmit}
+      className="card-body cardbody-color p-lg-5 text-dark"
+    >
+      <div className="d-flex align-items-center justify=content-center">
         <img
-          src="https://picsum.photos/340/340"
-          className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-          width="200px"
-          alt="profile"
+          src={banner}
+          className="my-4 w-100"
+          alt="welcome banner"
         />
       </div>
 
@@ -57,7 +61,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
         <input
           onChange={onChangeInput}
           type="email"
-          className="form-control"
+          className="form-control shadow-none rounded-0 border-0 border-bottom border-gray"
           name="email"
           aria-describedby="emailHelp"
           placeholder="Inserisci la tua email..."
@@ -68,7 +72,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
         <input
           onChange={onChangeInput}
           type="password"
-          className="form-control"
+          className="form-control shadow-none rounded-0 border-0 border-bottom border-gray"
           name="password"
           placeholder="Inserisci la tua password"
         />
@@ -79,7 +83,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
           as={Link}
           to="/home"
           type="submit"
-          className="btn btn-primary px-5 mb-5 w-100"
+          className="btn btn-dark px-5 mb-5 w-100 rounded-0"
         >
           Login
         </button>
@@ -89,7 +93,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
         Non sei registrato?
         <button
           type="button"
-          className="ms-2 btn btn-primary"
+          className="ms-2 btn btn-dark rounded-0"
           onClick={() => setToggleShowForm(!toggleShowForm)}
         >
           Registrati ora!

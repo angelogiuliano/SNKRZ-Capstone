@@ -36,7 +36,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
         Sei già registrato?
         <button
           type="button"
-          className="ms-2 btn btn-primary"
+          className="btn btn-dark px-5 ms-2 rounded-0"
           onClick={() => setToggleShowForm(!toggleShowForm)}
         >
           Fai il login
@@ -44,7 +44,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
       </div>
       <div className="mb-3">
         <input
-          className="border"
+          className="form-control shadow-none rounded-0 border-0 border-bottom border-gray"
           onChange={onChangeFn}
           placeholder="Name"
           type="text"
@@ -54,7 +54,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
 
       <div className="mb-3">
         <input
-          className="border"
+          className="form-control shadow-none rounded-0 border-0 border-bottom border-gray"
           onChange={onChangeFn}
           placeholder="Last Name"
           type="text"
@@ -64,7 +64,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
 
       <div className="mb-3">
         <input
-          className="border"
+          className="form-control shadow-none rounded-0 border-0 border-bottom border-gray"
           onChange={onChangeFn}
           placeholder="Email"
           type="email"
@@ -74,7 +74,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
 
       <div className="mb-3">
         <input
-          className="border"
+          className="form-control shadow-none rounded-0 border-0 border-bottom border-gray"
           onChange={onChangeFn}
           placeholder="Password"
           type="password"
@@ -83,7 +83,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
       </div>
 
       <div className="text-center">
-        <button type="submit" className="btn btn-primary px-5 mb-5">
+        <button type="submit" className="btn btn-dark px-5 mb-5 w-100 rounded-0">
           Registrati
         </button>
       </div>
