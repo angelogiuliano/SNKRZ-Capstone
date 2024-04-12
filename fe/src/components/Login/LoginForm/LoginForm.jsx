@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
-import './LoginForm.css'
-import banner from '../../../imgs/Welcome.png'
+import "./LoginForm.css";
+import banner from "../../../imgs/Welcome.png";
 
 export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
   const [formData, setFormData] = useState({});
@@ -30,7 +30,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
       console.log(response);
       if (response.status === 200) {
         localStorage.setItem("auth", JSON.stringify(response.data.token));
-        navigate("/home");
+        navigate("/");
         navigate(0);
       }
     } catch (error) {
@@ -44,11 +44,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
       className="card-body cardbody-color p-lg-5 text-dark"
     >
       <div className="d-flex align-items-center justify=content-center">
-        <img
-          src={banner}
-          className="my-4 w-100"
-          alt="welcome banner"
-        />
+        <img src={banner} className="my-4 w-100" alt="welcome banner" />
       </div>
 
       {errorLogin && (

@@ -19,7 +19,7 @@ export const Main = () => {
       {userInfo.firstName && <Welcome userInfo={userInfo} />}
       <div className="trending">
         <h1 className="mx-4">Trending</h1>
-        <TrendingProducts shuffleArray={false} limit={10} />
+        <TrendingProducts shuffleArray={false} limit={8} />
       </div>
 
       <div className="main-cont mt-5">

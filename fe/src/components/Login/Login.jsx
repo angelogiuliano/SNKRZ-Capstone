@@ -6,17 +6,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 export const Login = () => {
   const [toggleShowForm, setToggleShowForm] = useState(false);
 
-  const session = localStorage.getItem("auth");
-  const navigate = useNavigate();
+  // const session = localStorage.getItem("auth");
+  // const navigate = useNavigate();
   const location = useLocation();
-
-  useEffect(() => {
-    if (session) {
-      navigate("/home");
-    } else {
-      navigate("/");
-    }
-  }, [session, navigate]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -24,9 +16,9 @@ export const Login = () => {
     if (showSignUp === "true") {
       setToggleShowForm(false);
     } else {
-      setToggleShowForm(true)
+      setToggleShowForm(true);
     }
-  }, [location])
+  }, [location]);
 
   return (
     <div className="container">

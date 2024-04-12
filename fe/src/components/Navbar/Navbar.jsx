@@ -12,7 +12,7 @@ export const Navbar = () => {
     if (e.target.value !== "") {
       setSearchedItem(e.target.value);
     } else {
-      navigate("/home");
+      navigate("/");
     }
   };
 
@@ -27,12 +27,12 @@ export const Navbar = () => {
 
   const handleSignUp = () => {
     localStorage.setItem("auth", "");
-    navigate("/?showSignUp=true");
+    navigate("/login?showSignUp=true");
   };
 
   const handleLogout = () => {
     localStorage.setItem("auth", "");
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -49,20 +49,18 @@ export const Navbar = () => {
     <div className="w-100">
       <nav className="navbar">
         <div className="d-flex align-items-center">
-          <a href="/home" className="m-0 ms-4 oswald-font">
+          <a href="/" className="m-0 ms-4 oswald-font">
             SNKRZ
           </a>
-          {session && (
-            <div className="input-container ms-4 ">
-              <ion-icon name="search"></ion-icon>
-              <input
-                onChange={onChange}
-                name="navbar-input"
-                placeholder="Cerca.."
-                type="text"
-              />
-            </div>
-          )}
+          <div className="input-container ms-4 ">
+            <ion-icon name="search"></ion-icon>
+            <input
+              onChange={onChange}
+              name="navbar-input"
+              placeholder="Cerca.."
+              type="text"
+            />
+          </div>
         </div>
         <div className="login-signup d-flex me-4 gap-2">
           {!session ? (

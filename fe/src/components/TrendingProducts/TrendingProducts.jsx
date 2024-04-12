@@ -16,7 +16,7 @@ export const TrendingProducts = (props) => {
         `${process.env.REACT_APP_SERVER_BASE_URL}/mostPopular/${limit}`
       );
       if (shuffleArray) {
-        shuffle(response.data);
+        shuffle(response.data.splice(0, 8));
         setTrendingProducts(response.data);
       } else {
         setTrendingProducts(response.data);
