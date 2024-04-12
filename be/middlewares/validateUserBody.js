@@ -5,7 +5,8 @@ const validateUserBody = (req, res, next) => {
         firstName,
         lastName,
         email,
-        password
+        password,
+        favorites
     } = req.body;
 
     if (typeof firstName !== 'string') {
@@ -22,6 +23,10 @@ const validateUserBody = (req, res, next) => {
 
     if (typeof password !== 'string' || password.length < 8) {
         errors.push('Password must be a string with min 8 char')
+    }
+
+    if (typeof favorites !== "object") {
+        errors.push('Favorites must be an array')
     }
 
     if (errors.length > 0) {

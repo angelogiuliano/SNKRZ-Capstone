@@ -2,7 +2,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./Details.css";
-import { useSession } from "../../helpers/ProtectedRoutes";
+import { jwtDecode } from "jwt-decode";
+import { updateFavorites } from "../../helpers/updateFavorites";
+import { addToFavorites } from "../../helpers/addToFavorites";
+import { removeFromFavorites } from "../../helpers/removeFromFavorites";
 
 export const Details = () => {
   const id = useParams();
@@ -10,14 +13,30 @@ export const Details = () => {
   const [alreadyFavorite, setAlreadyFavorite] = useState(null);
 
   const session = localStorage.getItem("auth");
-  const favorites = JSON.parse(localStorage.getItem("favorites"));
+  const decodedSession = jwtDecode(session);
+  const userEmail = decodedSession.email;
+
+  const favorites = localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [];
   const navigate = useNavigate();
+
+  const checkFavorites = () => {
+    if (favorites) {
+      if (favorites.includes(details.styleID)) {
+        setAlreadyFavorite(true);
+      } else {
+        setAlreadyFavorite(false);
+      }
+    }
+  };
 
   const getDetails = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getDetails/${id.id}`
       );
+      checkFavorites()
       setDetails(response.data);
     } catch (error) {
       console.log(error);
@@ -27,20 +46,15 @@ export const Details = () => {
   const addToFav = () => {
     if (session) {
       if (favorites.includes(details.styleID)) {
+        console.log("already fav");
         setAlreadyFavorite(true);
-        const updatedFavorites = favorites.filter(
-          (id) => id !== details.styleID
-        );
-        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-        console.log("fav");
+        removeFromFavorites(details.styleID);
       } else {
+        console.log("added to fav");
         setAlreadyFavorite(false);
-        favorites.push(details.styleID);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        console.log("not fav");
+        addToFavorites(details.styleID);
       }
     } else {
-      localStorage.setItem("favorites", []);
       navigate("/login");
     }
   };
@@ -48,6 +62,7 @@ export const Details = () => {
   const addToCart = () => {
     session ? console.log("added to cart") : navigate("/login");
   };
+
 
   useEffect(() => {
     getDetails();
@@ -68,7 +83,7 @@ export const Details = () => {
               width={"500px"}
             />
             <div className="btn-cont d-flex gap-3 flex-wrap">
-              <button onClick={() => addToFav()} className="buy-btn fav">
+              <button onClick={(e) => addToFav(e)} className="buy-btn fav">
                 {alreadyFavorite === false ? "Rimuovi dai" : "Aggiungi ai"}{" "}
                 preferiti
               </button>

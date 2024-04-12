@@ -9,7 +9,8 @@ Content-Type: application/json
     "firstName": "Angelo",
     "lastName": "Giuliano",
     "email": "prova@test.it",
-    "password": "ciao1234"
+    "password": "ciao1234",
+    "favorites": []
 }
 
 ####
@@ -20,4 +21,13 @@ Content-Type: application/json
 {
     "email": "prova@test.it",
     "password": "ciao1234"
+}
+
+####
+
+PATCH http://localhost:3001/prova@test.it/updateFavorites
+Content-Type: application/json
+
+{
+    "favorites": []
 }

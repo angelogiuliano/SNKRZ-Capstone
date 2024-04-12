@@ -1,6 +1,8 @@
 import "./Card.css";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { addToFavorites } from "../../helpers/addToFavorites";
+import { removeFromFavorites } from "../../helpers/removeFromFavorites";
 
 export const Card = (props) => {
   const { src, name, price, _id } = props;
@@ -17,27 +19,9 @@ export const Card = (props) => {
       } else {
         addToFavorites(_id);
       }
+    } else {
+      navigate("/login");
     }
-
-    navigate("/login");
-  };
-
-  const addToFavorites = (productId) => {
-    const favorites = localStorage.getItem("favorites")
-      ? JSON.parse(localStorage.getItem("favorites"))
-      : [];
-
-    favorites.push(productId);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  };
-
-  const removeFromFavorites = (productId) => {
-    const favorites = localStorage.getItem("favorites")
-      ? JSON.parse(localStorage.getItem("favorites"))
-      : [];
-
-    const updatedFavorites = favorites.filter((id) => id !== productId);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   useEffect(() => {

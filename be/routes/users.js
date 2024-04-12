@@ -26,7 +26,10 @@ router.post("/createUser", validateUserBody, async (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: hashedPassword,
+    favorites: req.body.favorites,
   });
+
+  console.log(newUser);
 
   try {
     const userToSave = await newUser.save();
@@ -42,4 +45,33 @@ router.post("/createUser", validateUserBody, async (req, res) => {
   }
 });
 
-module.exports = router
+router.patch("/:email/updateFavorites", async (req, res) => {
+  const { email } = req.params;
+
+  const user = await UserModel.findOne({ email: email });
+
+  if (!user) {
+    return res.status(404).send({
+      statusCode: 404,
+      message: "No user found",
+    });
+  }
+
+  try {
+    const updatedFavorites = Array.isArray(req.body.favorites)
+      ? req.body.favorites
+      : [req.body.favorites];
+
+    user.favorites = updatedFavorites;
+    const result = await user.save();
+
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: "Internal server error",
+    });
+  }
+});
+
+module.exports = router;
