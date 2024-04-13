@@ -38,7 +38,7 @@
   margin: 0; /* Remove default line-height margin */
 }
 
-.log-btn {
+.remove-btn {
     border: 1px solid black;
     border-radius: 0;
     color: black;
@@ -48,7 +48,7 @@
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.log-btn:hover {
+.remove-btn:hover {
     background-color: red;
     border: 1px solid transparent;
 }

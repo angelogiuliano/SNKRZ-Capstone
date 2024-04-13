@@ -50,10 +50,12 @@ export const Details = () => {
         console.log("already fav");
         setAlreadyFavorite(true);
         removeFromFavorites(details.styleID);
+        navigate(0)
       } else {
         console.log("added to fav");
         setAlreadyFavorite(false);
         addToFavorites(details.styleID);
+        navigate(0)
       }
     } else {
       navigate("/login");

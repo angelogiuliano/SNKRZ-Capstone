@@ -29,7 +29,7 @@ export const Favorites = () => {
               {favoriteItem.retailPrice} $
             </p>
             <button
-              className="log-btn mt-4 w-50"
+              className="remove-btn mt-4 w-50"
               onClick={(e) => handleRemoveFromFav(e)}
             >
               Rimuovi
