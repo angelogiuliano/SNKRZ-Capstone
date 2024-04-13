@@ -62,8 +62,8 @@ router.patch("/:email/updateFavorites", async (req, res) => {
       ? req.body.favorites
       : [req.body.favorites];
 
-    console.log(user, updatedFavorites);
     user.favorites = updatedFavorites;
+
     const result = await user.save();
 
     res.status(200).send(result);

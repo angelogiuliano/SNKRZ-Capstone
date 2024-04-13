@@ -11,10 +11,6 @@ export const Main = () => {
     if (session) {
       const decodedSession = jwtDecode(session);
       setUserInfo(decodedSession);
-      localStorage.setItem(
-        "favorites",
-        JSON.stringify(decodedSession.favorites)
-      );
     }
   }, []);
 

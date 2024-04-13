@@ -11,7 +11,7 @@ export const Card = (props) => {
   const session = localStorage.getItem("auth")
     ? localStorage.getItem("auth")
     : "";
-  // const decodedSession = session && jwtDecode(session);
+  const decodedSession = session && jwtDecode(session);
 
   const navigate = useNavigate();
 
