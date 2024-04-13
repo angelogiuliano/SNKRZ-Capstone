@@ -55,3 +55,13 @@ ion-icon {
     color: white;
     background-color: black;
 }
+
+.favorites-handler {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.favorites-handler:hover {
+    color: white;
+    background-color: red;
+    border: 1px solid transparent;
+}

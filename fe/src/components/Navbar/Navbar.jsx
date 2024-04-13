@@ -33,7 +33,15 @@ export const Navbar = () => {
   const handleLogout = () => {
     localStorage.setItem("auth", "");
     navigate("/login");
-    localStorage.setItem('favorites', [])
+    localStorage.setItem("favorites", []);
+  };
+
+  const handleFavorites = () => {
+    if (session) {
+      navigate("/favorites");
+    } else {
+      navigate("/login");
+    }
   };
 
   useEffect(() => {
@@ -74,10 +82,18 @@ export const Navbar = () => {
               </button>
             </>
           ) : (
-            <button onClick={() => handleLogout()} className="log-btn">
-              Logout
-            </button>
+            <>
+              <button onClick={() => handleLogout()} className="log-btn">
+                Logout
+              </button>{" "}
+            </>
           )}
+          <button
+            onClick={() => handleFavorites()}
+            className="log-btn favorites-handler"
+          >
+            Favorites
+          </button>
         </div>
       </nav>
       <div className="gradient"></div>

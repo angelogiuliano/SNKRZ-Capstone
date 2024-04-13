@@ -44,6 +44,14 @@ export const Details = () => {
     }
   };
 
+  const checkIsFav = () => {
+    if (alreadyFavorite) {
+      return "Rimuovi dai";
+    } else {
+      return "Aggiungi ai";
+    }
+  };
+
   const addToFav = () => {
     if (session) {
       if (favorites.includes(details.styleID)) {
@@ -67,7 +75,7 @@ export const Details = () => {
 
   useEffect(() => {
     getDetails();
-  }, []);
+  }, [alreadyFavorite]);
 
   return (
     <div className="mx-4 my-5 d-flex justify-content-center">
@@ -85,8 +93,7 @@ export const Details = () => {
             />
             <div className="btn-cont d-flex gap-3 flex-wrap">
               <button onClick={(e) => addToFav(e)} className="buy-btn fav">
-                {alreadyFavorite ? "Rimuovi dai" : "Aggiungi ai"}{" "}
-                preferiti
+                {checkIsFav()} preferiti
               </button>
               <button onClick={() => addToCart()} className="buy-btn cart">
                 Aggiungi al carrello

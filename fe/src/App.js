@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Details } from "./components/Details/Details";
 import { SearchedProducts } from "./components/SearchedProducts/SearchedProducts";
 import { Login } from "./components/Login/Login";
-import { SignUpForm } from "./components/Login/SignUpForm/SignUpForm";
+import { Favorites } from "./components/Favorites/Favorites";
 import ProtectedRoutes from "./helpers/ProtectedRoutes";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         {/* <Route path="/protected" element={<ProtectedRoutes />}></Route> */}
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<Login />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/products/:name" element={<SearchedProducts />} />

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
   const [signUpData, setSignUpData] = useState({});
+  const navigate = useNavigate();
 
   const onChangeFn = (e) => {
     e.preventDefault();
@@ -11,6 +13,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
     setSignUpData({
       ...signUpData,
       [name]: newValue,
+      favorites: [],
     });
   };
 
@@ -22,6 +25,7 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
         signUpData
       );
       setToggleShowForm(!toggleShowForm);
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }
@@ -83,7 +87,10 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
       </div>
 
       <div className="text-center">
-        <button type="submit" className="btn btn-dark px-5 mb-5 w-100 rounded-0">
+        <button
+          type="submit"
+          className="btn btn-dark px-5 mb-5 w-100 rounded-0"
+        >
           Registrati
         </button>
       </div>
