@@ -28,6 +28,7 @@ login.post('/login', async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
+            favorites: user.favorites
           },
           process.env.SECRET_KEY,
           {

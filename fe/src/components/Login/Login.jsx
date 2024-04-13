@@ -5,9 +5,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 export const Login = () => {
   const [toggleShowForm, setToggleShowForm] = useState(false);
-
-  // const session = localStorage.getItem("auth");
-  // const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {

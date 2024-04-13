@@ -12,9 +12,10 @@ export const Details = () => {
   const [details, setDetails] = useState({});
   const [alreadyFavorite, setAlreadyFavorite] = useState(null);
 
-  const session = localStorage.getItem("auth");
-  const decodedSession = jwtDecode(session);
-  const userEmail = decodedSession.email;
+  const session = localStorage.getItem("auth")
+    ? localStorage.getItem("auth")
+    : "";
+  const decodedSession = session && jwtDecode(session);
 
   const favorites = localStorage.getItem("favorites")
     ? JSON.parse(localStorage.getItem("favorites"))
@@ -36,7 +37,7 @@ export const Details = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getDetails/${id.id}`
       );
-      checkFavorites()
+      checkFavorites();
       setDetails(response.data);
     } catch (error) {
       console.log(error);
@@ -57,12 +58,12 @@ export const Details = () => {
     } else {
       navigate("/login");
     }
+    console.log(favorites);
   };
 
   const addToCart = () => {
     session ? console.log("added to cart") : navigate("/login");
   };
-
 
   useEffect(() => {
     getDetails();
@@ -84,7 +85,7 @@ export const Details = () => {
             />
             <div className="btn-cont d-flex gap-3 flex-wrap">
               <button onClick={(e) => addToFav(e)} className="buy-btn fav">
-                {alreadyFavorite === false ? "Rimuovi dai" : "Aggiungi ai"}{" "}
+                {alreadyFavorite ? "Rimuovi dai" : "Aggiungi ai"}{" "}
                 preferiti
               </button>
               <button onClick={() => addToCart()} className="buy-btn cart">

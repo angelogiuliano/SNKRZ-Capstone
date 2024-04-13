@@ -3,13 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { addToFavorites } from "../../helpers/addToFavorites";
 import { removeFromFavorites } from "../../helpers/removeFromFavorites";
+import { updateFavorites } from "../../helpers/updateFavorites";
+import { jwtDecode } from "jwt-decode";
 
 export const Card = (props) => {
   const { src, name, price, _id } = props;
-  const session = localStorage.getItem("auth");
+  const session = localStorage.getItem("auth")
+    ? localStorage.getItem("auth")
+    : "";
+  // const decodedSession = session && jwtDecode(session);
+
   const navigate = useNavigate();
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const favorites = localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [];
 
   const handleFavorite = () => {
     if (session) {
@@ -25,10 +34,9 @@ export const Card = (props) => {
   };
 
   useEffect(() => {
-    const favorites = localStorage.getItem("favorites")
-      ? JSON.parse(localStorage.getItem("favorites"))
-      : [];
-    setIsFavorite(favorites.includes(_id));
+    if (session) {
+      setIsFavorite(favorites.includes(_id));
+    }
   }, [_id]);
 
   return (

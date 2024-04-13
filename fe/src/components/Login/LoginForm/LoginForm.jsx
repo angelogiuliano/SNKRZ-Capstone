@@ -30,6 +30,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
       console.log(response);
       if (response.status === 200) {
         localStorage.setItem("auth", JSON.stringify(response.data.token));
+        console.log(response.data);
         navigate("/");
         navigate(0);
       }

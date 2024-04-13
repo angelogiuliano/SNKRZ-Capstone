@@ -32,7 +32,8 @@ export const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.setItem("auth", "");
-    navigate("/");
+    navigate("/login");
+    localStorage.setItem('favorites', [])
   };
 
   useEffect(() => {
