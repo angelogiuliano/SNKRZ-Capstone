@@ -37,18 +37,10 @@ export const Details = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getDetails/${id.id}`
       );
-      checkFavorites();
       setDetails(response.data);
+      checkFavorites();
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const checkIsFav = () => {
-    if (alreadyFavorite) {
-      return "Rimuovi dai";
-    } else {
-      return "Aggiungi ai";
     }
   };
 
@@ -66,7 +58,6 @@ export const Details = () => {
     } else {
       navigate("/login");
     }
-    console.log(favorites);
   };
 
   const addToCart = () => {
@@ -93,7 +84,7 @@ export const Details = () => {
             />
             <div className="btn-cont d-flex gap-3 flex-wrap">
               <button onClick={(e) => addToFav(e)} className="buy-btn fav">
-                {checkIsFav()} preferiti
+                {alreadyFavorite ? "Rimuovi dai" : "Aggiungi ai"} preferiti
               </button>
               <button onClick={() => addToCart()} className="buy-btn cart">
                 Aggiungi al carrello
