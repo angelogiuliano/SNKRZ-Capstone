@@ -44,8 +44,8 @@ export const Card = (props) => {
         onClick={(e) => handleFavorite(e)}
         className={
           isFavorite
-            ? "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn favorite"
-            : "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn"
+            ? "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn favorite heart"
+            : "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn heart"
         }
       >
         <ion-icon name={isFavorite ? "heart" : "heart-empty"} className="heart"></ion-icon>

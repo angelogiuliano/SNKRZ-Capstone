@@ -61,13 +61,13 @@ export const Navbar = () => {
   }, [searchedItem]);
 
   return (
-    <div className="w-100">
-      <nav className="navbar mx-4">
+    <div className="w-100 container">
+      <nav className="navbar">
         <div className="d-flex align-items-center">
           <a href="/" className="m-0 oswald-font">
             SNKRZ
           </a>
-          <div className="input-container ms-4 d-none d-lg-block">
+          <div className="input-container ms-4 d-none d-lg-flex align-items-center">
             <ion-icon name="search"></ion-icon>
             <input
               onChange={onChange}
@@ -77,7 +77,7 @@ export const Navbar = () => {
             />
           </div>
         </div>
-        <div className={"login-signup d-flex gap-2 d-none d-lg-block"}>
+        <div className={"login-signup d-flex gap-2 d-none d-lg-flex"}>
           {!session ? (
             <>
               <button onClick={() => handleLogin()} className="log-btn">
@@ -112,7 +112,7 @@ export const Navbar = () => {
       <div
         className={
           !isNavOpen
-            ? "login-signup d-flex flex-wrap gap-2 d-lg-none justify-content-center w-100 px-4"
+            ? "login-signup d-flex flex-wrap gap-2 d-lg-none justify-content-center w-100"
             : "d-none"
         }
       >

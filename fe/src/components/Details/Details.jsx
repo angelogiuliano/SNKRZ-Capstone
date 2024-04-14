@@ -3,9 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./Details.css";
 import { jwtDecode } from "jwt-decode";
-import { updateFavorites } from "../../helpers/updateFavorites";
 import { addToFavorites } from "../../helpers/addToFavorites";
 import { removeFromFavorites } from "../../helpers/removeFromFavorites";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 
 export const Details = () => {
   const id = useParams();
@@ -37,8 +37,8 @@ export const Details = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getDetails/${id.id}`
       );
-      setDetails(response.data);
       checkFavorites();
+      setDetails(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -50,12 +50,10 @@ export const Details = () => {
         console.log("already fav");
         setAlreadyFavorite(true);
         removeFromFavorites(details.styleID);
-        navigate(0)
       } else {
         console.log("added to fav");
         setAlreadyFavorite(false);
         addToFavorites(details.styleID);
-        navigate(0)
       }
     } else {
       navigate("/login");
@@ -67,42 +65,53 @@ export const Details = () => {
   };
 
   useEffect(() => {
+    checkFavorites();
+  }, [favorites]);
+
+  useEffect(() => {
     getDetails();
-  }, [alreadyFavorite]);
+  }, [favorites]);
 
   return (
-    <div className="mx-4 my-5 d-flex justify-content-center">
-      {details.thumbnail ? (
-        <div className="w-50 d-flex flex-wrap">
-          <div className="shoe-info">
-            <h2>{details.shoeName}</h2>
-            <p>{details.colorway}</p>
-          </div>
-          <div className="d-flex align-items-center gap-5">
-            <img
-              src={details.thumbnail}
-              alt={details.shoeName}
-              width={"500px"}
-            />
-            <div className="btn-cont d-flex gap-3 flex-wrap">
-              <button onClick={(e) => addToFav(e)} className="buy-btn fav">
-                {alreadyFavorite ? "Rimuovi dai" : "Aggiungi ai"} preferiti
-              </button>
-              <button onClick={() => addToCart()} className="buy-btn cart">
-                Aggiungi al carrello
-              </button>
+    <Container className="my-5">
+      <Row className="justify-content-center flex-wrap">
+        <Col md={12}>
+          {details.thumbnail ? (
+            <div className="shoe-info">
+              <h2>{details.shoeName}</h2>
+              <p>{details.colorway}</p>
             </div>
-          </div>
-        </div>
-      ) : (
-        <div className="w-100 text-center">
-          <img
-            width={"400px"}
-            src="https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif"
-            alt=""
-          />
-        </div>
-      )}
-    </div>
+          ) : (
+            <div className="text-center">
+              <Image
+                width={400}
+                src="https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif"
+                alt=""
+              />
+            </div>
+          )}
+        </Col>
+        <Col md={12}>
+          {details.thumbnail && (
+            <div className="d-flex justify-content-evenly align-items-center my-3 flex-wrap">
+              <Image
+                width={400}
+                src={details.thumbnail}
+                alt={details.shoeName}
+                fluid
+              />
+              <div className="btn-cont mt-3 d-flex flex-column align-items-center">
+                <Button onClick={() => addToFav()} className="buy-btn fav">
+                  {alreadyFavorite ? "Rimuovi dai" : "Aggiungi ai"} preferiti
+                </Button>
+                <Button onClick={addToCart} className="buy-btn cart mt-3">
+                  Aggiungi al carrello
+                </Button>
+              </div>
+            </div>
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 };

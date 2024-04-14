@@ -4,7 +4,7 @@ import { Card } from "../Card/Card";
 const ProductLayout = ({ trendingProducts, text }) => {
   return (
     <div className="container justify-content-center">
-      <h1>{text}</h1>
+      <h1 className="">{text}</h1>
       {trendingProducts.length > 0 ? (
         <Row xs={1} md={2} lg={3} className="g-4">
           {trendingProducts.map((product, i) => (

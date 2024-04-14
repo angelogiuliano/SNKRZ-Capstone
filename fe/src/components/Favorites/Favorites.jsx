@@ -61,14 +61,12 @@ export const Favorites = () => {
     }
   };
 
-  console.log(itemsInfo);
-
   useEffect(() => {
     getFavoritesInfo();
   }, []);
 
   return itemsInfo.length > 0 ? (
-    <div className="mx-4 d-flex">{createCardsFromFavorites()}</div>
+    <div className="mx-4 d-flex flex-wrap">{createCardsFromFavorites()}</div>
   ) : favorites.length > 0 ? (
     <div className="w-100 text-center">
       <img
