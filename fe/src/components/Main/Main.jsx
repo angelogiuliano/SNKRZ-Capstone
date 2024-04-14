@@ -18,13 +18,15 @@ export const Main = () => {
     <>
       {userInfo.firstName && <Welcome userInfo={userInfo} />}
       <div className="trending">
-        <h1 className="mx-4">Trending</h1>
-        <TrendingProducts shuffleArray={false} limit={8} />
+        <TrendingProducts shuffleArray={false} limit={8} text={"Trending"} />
       </div>
 
       <div className="main-cont mt-5">
-        <h1 className="mx-4">Check our new products</h1>
-        <TrendingProducts shuffleArray={true} limit={50} />
+        <TrendingProducts
+          shuffleArray={true}
+          limit={50}
+          text={"Check our new products"}
+        />
       </div>
     </>
   );

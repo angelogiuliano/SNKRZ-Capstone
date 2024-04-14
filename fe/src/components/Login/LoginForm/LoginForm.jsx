@@ -35,6 +35,7 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
           "favorites",
           JSON.stringify(jwtDecode(response.data.token).favorites)
         );
+        localStorage.setItem('alertShown', false)
         navigate("/");
         navigate(0);
       }

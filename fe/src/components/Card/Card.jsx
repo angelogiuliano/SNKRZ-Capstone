@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { addToFavorites } from "../../helpers/addToFavorites";
 import { removeFromFavorites } from "../../helpers/removeFromFavorites";
-import { updateFavorites } from "../../helpers/updateFavorites";
 import { jwtDecode } from "jwt-decode";
 
 export const Card = (props) => {
@@ -49,10 +48,10 @@ export const Card = (props) => {
             : "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn"
         }
       >
-        <ion-icon name={isFavorite ? "heart" : "heart-empty"}></ion-icon>
+        <ion-icon name={isFavorite ? "heart" : "heart-empty"} className="heart"></ion-icon>
       </button>
       <Link to={`/details/${_id}`} className="sneaker-card">
-        <img src={src} alt="Product" className="card-image p-5" />
+        <img src={src} alt="Product" className="card-image p-5 w-100"/>
         <div className="p-3">
           <h3 className="card-title">{name}</h3>
           <span className="card-price">${price}</span>

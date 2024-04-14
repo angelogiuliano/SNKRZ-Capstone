@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card } from "../Card/Card";
 import { Alert } from "react-bootstrap";
+import ProductLayout from "../ProductLayout/ProductLayout";
 
 export const SearchedProducts = () => {
   const [foundProducts, setFoundProducts] = useState([]);
@@ -42,19 +43,9 @@ export const SearchedProducts = () => {
           />
         </div>
       )}
-      {!error &&
-        foundProducts.length > 0 &&
-        foundProducts.map((product, i) => {
-          return (
-            <Card
-              key={i}
-              name={product.shoeName}
-              src={product.thumbnail}
-              _id={product.styleID}
-              price={product.retailPrice}
-            />
-          );
-        })}
+      {!error && foundProducts.length > 0 && (
+        <ProductLayout trendingProducts={foundProducts} />
+      )}
     </div>
   );
 };

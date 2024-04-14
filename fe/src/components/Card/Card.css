@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-ion-icon:hover {
+.heart:hover {
   color: red;
 }
 
@@ -49,4 +49,5 @@ ion-icon:hover {
 .card-price {
   font-family: "SuisseIntl-Regular", sans-serif;
   font-size: 25px;
+  font-weight: bold;
 }
