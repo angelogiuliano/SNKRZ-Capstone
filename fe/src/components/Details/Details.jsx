@@ -22,7 +22,7 @@ export const Details = () => {
     : [];
   const navigate = useNavigate();
 
-  const checkFavorites = () => {
+  const checkFavorites = (favorites) => {
     if (favorites) {
       if (favorites.includes(details.styleID)) {
         setAlreadyFavorite(true);
@@ -47,14 +47,14 @@ export const Details = () => {
   const addToFav = () => {
     if (session) {
       if (favorites.includes(details.styleID)) {
-        console.log("already fav");
         setAlreadyFavorite(true);
         removeFromFavorites(details.styleID);
       } else {
-        console.log("added to fav");
         setAlreadyFavorite(false);
         addToFavorites(details.styleID);
       }
+      const currentFavorites = localStorage.getItem("favorites");
+      checkFavorites(currentFavorites);
     } else {
       navigate("/login");
     }
@@ -65,12 +65,13 @@ export const Details = () => {
   };
 
   useEffect(() => {
-    checkFavorites();
+    const currentFavorites = localStorage.getItem("favorites");
+    checkFavorites(currentFavorites);
   }, [favorites]);
 
   useEffect(() => {
     getDetails();
-  }, [favorites]);
+  }, []);
 
   return (
     <Container className="my-5">
