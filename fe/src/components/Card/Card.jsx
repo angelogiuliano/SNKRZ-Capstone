@@ -36,7 +36,8 @@ export const Card = (props) => {
   };
 
   const handleCart = () => {
-    dispatch(addToCart({src, name, price, _id}))
+    dispatch(addToCart({src, name, price, _id, quantity: 1}))
+    navigate(0)
   }
 
   useEffect(() => {

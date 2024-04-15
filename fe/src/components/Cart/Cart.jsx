@@ -1,22 +1,30 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/cartSlice";
-import { useEffect } from "react";
+import { removeFromCart, updateQuantity } from "../../redux/cartSlice";
+import { useEffect, useState } from "react";
 export const Cart = () => {
   const dispatch = useDispatch();
+  const sliceCart = useSelector((state) => state.cart.cart)
   const cartItems = JSON.parse(localStorage.getItem("cart"));
+  const [totalPrice, setTotalPrice] = useState(0)
+
   let price = 0;
 
   const getPrice = () => {
-    cartItems.map((item) => {
-      price += item.price;
+    cartItems.forEach((item) => {
+      price = item.price * (item.quantity);
     });
-    return price
+    setTotalPrice(price)
+  };
+
+  const handleQuantityChange = (id, quantity) => {
+    dispatch(updateQuantity({ id, quantity }));
+    getPrice()
   };
 
   useEffect(() => {
     getPrice()
-  })
+  }, [sliceCart])
 
   return (
     <div className="container d-flex flex-wrap">
@@ -29,6 +37,17 @@ export const Cart = () => {
             <p>
               <b>Price:</b> ${item.price}
             </p>
+            <p>
+            <b>Quantity:</b>{" "}
+            <input
+              type="number"
+              defaultValue={item.quantity}
+              onChange={(e) =>
+                handleQuantityChange(item._id, parseInt(e.target.value))
+              }
+              min={1}
+            />
+          </p>
             <button
               onClick={() => dispatch(removeFromCart({ id: item._id }))}
               className="log-btn"
@@ -39,7 +58,7 @@ export const Cart = () => {
         );
       })}
       <div className="checkout d-flex flex-wrap gap-3 my-4 w-100 justify-content-center">
-        <h5 className="m-0 p-0">Total: ${getPrice()}</h5>
+        <h5 className="m-0 p-0">Total: ${totalPrice}</h5>
         <button className="w-100 log-btn">Checkout</button>
       </div>
     </div>

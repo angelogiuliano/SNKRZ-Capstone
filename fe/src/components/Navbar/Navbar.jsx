@@ -68,7 +68,7 @@ export const Navbar = () => {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [searchedItem]);
+  }, [searchedItem, cartItems]);
 
   return (
     <div className="w-100 container">
