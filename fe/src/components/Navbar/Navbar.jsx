@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Navbar = () => {
   const [searchedItem, setSearchedItem] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(true);
 
   const navigate = useNavigate();
+  const cartItems = JSON.parse(localStorage.getItem('cart'))
   const session = localStorage.getItem("auth");
 
   const toggleNav = () => {
@@ -45,6 +47,14 @@ export const Navbar = () => {
   const handleFavorites = () => {
     if (session) {
       navigate("/favorites");
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handleCart = () => {
+    if (session) {
+      navigate("/cart");
     } else {
       navigate("/login");
     }
@@ -100,6 +110,9 @@ export const Navbar = () => {
           >
             Favorites
           </button>
+          <button onClick={() => handleCart()} className="log-btn cart-handler">
+            Cart {cartItems.length}
+          </button>
         </div>
 
         <button
@@ -116,7 +129,7 @@ export const Navbar = () => {
             : "d-none"
         }
       >
-        <div className="input-container w-100">
+        <div className="input-container w-50">
           <ion-icon name="search"></ion-icon>
           <input
             onChange={onChange}
@@ -127,25 +140,31 @@ export const Navbar = () => {
         </div>
         {!session ? (
           <>
-            <button onClick={() => handleLogin()} className="log-btn w-100">
+            <button onClick={() => handleLogin()} className="log-btn w-50">
               Login
             </button>
-            <button onClick={() => handleSignUp()} className="log-btn w-100">
+            <button onClick={() => handleSignUp()} className="log-btn w-50">
               Registrati
             </button>
           </>
         ) : (
           <>
-            <button onClick={() => handleLogout()} className="log-btn w-100">
+            <button onClick={() => handleLogout()} className="log-btn w-50">
               Logout
             </button>{" "}
           </>
         )}
         <button
           onClick={() => handleFavorites()}
-          className="log-btn favorites-handler w-100"
+          className="log-btn favorites-handler w-50"
         >
           Favorites
+        </button>
+        <button
+          onClick={() => handleCart()}
+          className="log-btn cart-handler w-50"
+        >
+          Cart {cartItems.length}
         </button>
       </div>
       <div className="gradient"></div>

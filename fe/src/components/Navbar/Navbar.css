@@ -65,3 +65,8 @@ ion-icon {
     background-color: red;
     border: 1px solid transparent;
 }
+
+.cart-handler:hover {
+    background-color: green;
+    border: 1px solid transparent;
+}

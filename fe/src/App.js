@@ -7,23 +7,28 @@ import { Details } from "./components/Details/Details";
 import { SearchedProducts } from "./components/SearchedProducts/SearchedProducts";
 import { Login } from "./components/Login/Login";
 import { Favorites } from "./components/Favorites/Favorites";
+import { Cart } from "./components/Cart/Cart";
 import ProtectedRoutes from "./helpers/ProtectedRoutes";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        {/* <Route path="/protected" element={<ProtectedRoutes />}></Route> */}
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/details/:id" element={<Details />} />
-        <Route path="/products/:name" element={<SearchedProducts />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/products/:name" element={<SearchedProducts />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </Provider>
   );
 }
 
