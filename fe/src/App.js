@@ -8,6 +8,7 @@ import { SearchedProducts } from "./components/SearchedProducts/SearchedProducts
 import { Login } from "./components/Login/Login";
 import { Favorites } from "./components/Favorites/Favorites";
 import { Cart } from "./components/Cart/Cart";
+import {CheckoutSuccess} from './components/CheckoutSuccess/CheckoutSuccess'
 import ProtectedRoutes from "./helpers/ProtectedRoutes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout-success" element={<CheckoutSuccess />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/login" element={<Login />} />
           <Route path="/details/:id" element={<Details />} />

@@ -10,7 +10,8 @@ const app = express();
 // import routes
 const sneaksRoute = require("./routes/sneaks");
 const usersRoute = require("./routes/users");
-const loginRoute = require('./routes/login')
+const loginRoute = require('./routes/login');
+const checkoutRoute = require('./routes/checkout')
 
 // middlewares
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use(cors());
 app.use("/", sneaksRoute);
 app.use("/", usersRoute);
 app.use("/", loginRoute);
+app.use("/", checkoutRoute);
 
 // db
 mongoose.connect(process.env.MONGODB_URL);
