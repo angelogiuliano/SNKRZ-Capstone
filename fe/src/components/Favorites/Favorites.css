@@ -6,7 +6,7 @@
 .favorites-card {
   width: 100%; /* Adjust width as needed */
   padding: 10px; /* Add padding for inner content */
-  max-width: 500px;
+  max-width: 400px;
 }
 
 .favorites-item {

@@ -27,7 +27,7 @@ export const Welcome = (props) => {
   }, [timer, showAlert]);
 
   return (
-    <div className={showAlert ? "mx-4" : "d-none"}>
+    <div className={showAlert ? "container" : "d-none"}>
       <Alert variant="success">Welcome, {firstName + " " + lastName}</Alert>
     </div>
   );

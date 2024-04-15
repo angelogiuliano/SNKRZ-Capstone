@@ -21,8 +21,8 @@ export const Favorites = () => {
   const createCardsFromFavorites = () => {
     return itemsInfo.map((favoriteItem, i) => {
       return (
-        <div key={i} className="favorites-card" id={favoriteItem.styleID}>
-          <div className="favorites-item py-5">
+        <div key={i} className="favorites-card p-0" id={favoriteItem.styleID}>
+          <div className="favorites-item py-5 my-5 mx-0">
             <img src={favoriteItem.thumbnail} alt="Product" />
             <div className="prod-info d-flex flex-wrap text-start m-auto col w-50">
               <h4>{favoriteItem.shoeName}</h4>
@@ -66,7 +66,7 @@ export const Favorites = () => {
   }, []);
 
   return itemsInfo.length > 0 ? (
-    <div className="mx-4 d-flex flex-wrap">{createCardsFromFavorites()}</div>
+    <div className="d-flex flex-wrap container">{createCardsFromFavorites()}</div>
   ) : favorites.length > 0 ? (
     <div className="w-100 text-center">
       <img
