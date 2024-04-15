@@ -6,16 +6,20 @@ import { jwtDecode } from "jwt-decode";
 import { addToFavorites } from "../../helpers/addToFavorites";
 import { removeFromFavorites } from "../../helpers/removeFromFavorites";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../redux/cartSlice";
 
 export const Details = () => {
   const id = useParams();
   const [details, setDetails] = useState({});
   const [alreadyFavorite, setAlreadyFavorite] = useState(null);
+  const [alreadyInCart, setAlreadyInCart] = useState(null);
 
   const session = localStorage.getItem("auth")
     ? localStorage.getItem("auth")
     : "";
   const decodedSession = session && jwtDecode(session);
+  const dispatch = useDispatch();
 
   const favorites = localStorage.getItem("favorites")
     ? JSON.parse(localStorage.getItem("favorites"))
@@ -60,8 +64,28 @@ export const Details = () => {
     }
   };
 
-  const addToCart = () => {
-    session ? console.log("added to cart") : navigate("/login");
+  const addToCartFunction = () => {
+    if (session) {
+      const currentCart = localStorage.getItem("cart");
+      console.log(details.styleID);
+      if (!currentCart.includes(details.styleID)) {
+        setAlreadyInCart(true);
+        dispatch(
+          addToCart({
+            src: details.thumbnail,
+            name: details.shoeName,
+            price: details.retailPrice,
+            id: details.styleID,
+            quantity: 1,
+          })
+        );
+      } else {
+        setAlreadyInCart(false);
+        dispatch(removeFromCart(details.styleID));
+      }
+    } else {
+      navigate("/login");
+    }
   };
 
   useEffect(() => {
@@ -105,8 +129,11 @@ export const Details = () => {
                 <Button onClick={() => addToFav()} className="buy-btn fav">
                   {alreadyFavorite ? "Rimuovi dai" : "Aggiungi ai"} preferiti
                 </Button>
-                <Button onClick={addToCart} className="buy-btn cart mt-3">
-                  Aggiungi al carrello
+                <Button
+                  onClick={() => addToCartFunction()}
+                  className="buy-btn cart mt-3"
+                >
+                  {alreadyInCart ? "Rimuovi dal" : "Aggiungi al"} carrello
                 </Button>
               </div>
             </div>
