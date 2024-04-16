@@ -2,6 +2,7 @@ import { TrendingProducts } from "../TrendingProducts/TrendingProducts";
 import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
 import { Welcome } from "../Welcome/Welcome";
+import { Carousel } from "../Carousel/Carousel";
 
 export const Main = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -18,6 +19,7 @@ export const Main = () => {
     <>
       {userInfo.firstName && <Welcome userInfo={userInfo} />}
       <div className="trending">
+        <Carousel/>
         <TrendingProducts shuffleArray={false} limit={8} text={"Trending"} />
       </div>
 

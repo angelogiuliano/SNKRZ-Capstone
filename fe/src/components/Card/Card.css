@@ -1,8 +1,12 @@
 .fav-btn {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  z-index: 1;
   max-width: 40px;
-  max-height: 40px; /* Imposta una larghezza massima per il bottone */
+  max-height: 40px;
   display: flex;
-  justify-content: center; /* Centra l'icona orizzontalmente */
+  justify-content: center;
   align-items: center;
 }
 
@@ -14,19 +18,32 @@
   color: red;
 }
 
+.cart-btn {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  z-index: 1;
+  max-width: 40px;
+  max-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .cart-btn:hover {
   color: green;
 }
 
 .sneaker-card {
+  position: relative; /* Per rendere i bottoni assoluti relativi al genitore */
   width: 250px;
   overflow: hidden;
   height: auto;
-  transition: scale 0.2s ease;
+  transition: transform 0.2s ease; /* Corretto il nome della transizione */
 }
 
 .sneaker-card:hover {
-  scale: 1.05;
+  transform: scale(1.05); /* Corretto il nome della trasformazione */
 }
 
 .card-image {

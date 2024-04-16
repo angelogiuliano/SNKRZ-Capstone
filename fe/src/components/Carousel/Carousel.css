@@ -1,0 +1,20 @@
+.carousel-inner img {
+    max-height: 500px;
+    object-fit:cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: rgba(0, 0, 0, 0.5); /* Imposta il colore di sfondo */
+  border-radius: 50%; /* Imposta il bordo arrotondato */
+  padding: 5px; /* Aggiungi spazio intorno al pulsante */
+  height: 40px;
+  width: 40px;
+  align-self: center;
+  margin: 0 20px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  color: black; /* Imposta il colore dell'icona */
+}

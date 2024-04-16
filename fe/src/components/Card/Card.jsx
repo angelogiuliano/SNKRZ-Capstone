@@ -74,39 +74,31 @@ export const Card = (props) => {
       <Alert
         key={"warning"}
         variant={"warning"}
-        className={showAlert ? "position-absolute z-1" : "d-none"}
+        className={showAlert ? "position-absolute z-2" : "d-none"}
       >
         Questo elemento è già stato aggiunto al carrello
       </Alert>
-      <div className="d-flex col flex-wrap position-relative" id={_id}>
-        <div className="buttons-cont d-flex justify-content-center flex-wrap">
-          <div className="row">
-            <div className="col-12">
-              <button
-                onClick={(e) => handleFavorite(e)}
-                className={
-                  isFavorite
-                    ? "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn favorite heart"
-                    : "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn heart"
-                }
-              >
-                <ion-icon
-                  name={isFavorite ? "heart" : "heart-empty"}
-                  className="heart"
-                ></ion-icon>
-              </button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <button
-                onClick={() => handleCart()}
-                className="border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn cart-btn"
-              >
-                <ion-icon name="cart"></ion-icon>
-              </button>
-            </div>
-          </div>
+      <div className={`d-flex col flex-wrap position-relative ${window.innerWidth <= 576 ? 'justify-content-center' : ''}`} id={_id}>
+        <div className="buttons-cont d-flex flex-wrap">
+          <button
+            onClick={(e) => handleFavorite(e)}
+            className={
+              isFavorite
+                ? "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn favorite heart"
+                : "border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn heart"
+            }
+          >
+            <ion-icon
+              name={isFavorite ? "heart" : "heart-empty"}
+              className="heart"
+            ></ion-icon>
+          </button>
+          <button
+            onClick={() => handleCart()}
+            className="border-0 bg-transparent p-0 m-0 d-flex w-100 fav-btn cart-btn"
+          >
+            <ion-icon name="cart"></ion-icon>
+          </button>
         </div>
 
         <Link to={`/details/${_id}`} className="sneaker-card">
