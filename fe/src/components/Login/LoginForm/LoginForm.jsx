@@ -35,8 +35,8 @@ export const LoginForm = ({ toggleShowForm, setToggleShowForm }) => {
           "favorites",
           JSON.stringify(jwtDecode(response.data.token).favorites)
         );
-        localStorage.setItem('alertShown', false);
-        localStorage.setItem('cart', JSON.stringify([]))
+        localStorage.setItem("alertShown", false);
+        localStorage.setItem("cart", JSON.stringify([]));
         navigate("/");
         navigate(0);
       }

@@ -75,7 +75,7 @@ export const Details = () => {
             src: details.thumbnail,
             name: details.shoeName,
             price: details.retailPrice,
-            id: details.styleID,
+            _id: details.styleID,
             quantity: 1,
           })
         );
@@ -88,6 +88,16 @@ export const Details = () => {
     }
   };
 
+  const checkIfAlreadyInCart = () => {
+    const currentCart = localStorage.getItem("cart");
+    if (currentCart.includes(details.styleID)) {
+      setAlreadyInCart(true);
+    } else {
+      setAlreadyInCart(false);
+    }
+    console.log(alreadyInCart);
+  };
+
   useEffect(() => {
     const currentFavorites = localStorage.getItem("favorites");
     checkFavorites(currentFavorites);
@@ -96,6 +106,10 @@ export const Details = () => {
   useEffect(() => {
     getDetails();
   }, []);
+
+  useEffect(() => {
+    checkIfAlreadyInCart();
+  }, [details]);
 
   return (
     <Container className="my-5">

@@ -8,7 +8,9 @@ export const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(true);
 
   const navigate = useNavigate();
-  const cartItems = JSON.parse(localStorage.getItem('cart'))
+  const cartItems = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
   const session = localStorage.getItem("auth");
 
   const toggleNav = () => {
@@ -39,8 +41,9 @@ export const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.setItem("auth", "");
-    localStorage.setItem("favorites", []);
+    localStorage.setItem("favorites", JSON.stringify([]));
     localStorage.setItem("alertShown", false);
+    localStorage.setItem("cart", JSON.stringify([]));
     navigate("/login");
   };
 
@@ -111,7 +114,7 @@ export const Navbar = () => {
             Favorites
           </button>
           <button onClick={() => handleCart()} className="log-btn cart-handler">
-            Cart {cartItems.length}
+            Cart {cartItems ? cartItems.length : 0}
           </button>
         </div>
 
@@ -164,7 +167,7 @@ export const Navbar = () => {
           onClick={() => handleCart()}
           className="log-btn cart-handler w-50"
         >
-          Cart {cartItems.length}
+          Cart {cartItems ? cartItems.length : 0}
         </button>
       </div>
       <div className="gradient"></div>

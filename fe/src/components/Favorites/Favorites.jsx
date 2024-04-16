@@ -22,7 +22,7 @@ export const Favorites = () => {
     return itemsInfo.map((favoriteItem, i) => {
       return (
         <div key={i} className="favorites-card p-0" id={favoriteItem.styleID}>
-          <div className="favorites-item py-5 my-5 mx-0">
+          <div className="favorites-item py-5 px-0 my-5 mx-0">
             <img src={favoriteItem.thumbnail} alt="Product" />
             <div className="prod-info d-flex flex-wrap text-start m-auto col w-50">
               <h4>{favoriteItem.shoeName}</h4>
@@ -66,7 +66,9 @@ export const Favorites = () => {
   }, []);
 
   return itemsInfo.length > 0 ? (
-    <div className="d-flex flex-wrap container">{createCardsFromFavorites()}</div>
+    <div className="d-flex gap-3 flex-wrap container">
+      {createCardsFromFavorites()}
+    </div>
   ) : favorites.length > 0 ? (
     <div className="w-100 text-center">
       <img
@@ -76,6 +78,8 @@ export const Favorites = () => {
       />
     </div>
   ) : (
-    <p className="mx-4">Aggiungi elementi ai preferiti</p>
+    <div className="container">
+      <p className="">Aggiungi elementi ai preferiti</p>
+    </div>
   );
 };

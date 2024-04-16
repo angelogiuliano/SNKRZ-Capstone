@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Alert from "react-bootstrap/Alert";
 
 export const Welcome = (props) => {
-  const { firstName, lastName } = props.userInfo;
+  const { firstName } = props.userInfo;
 
   const [timer, setTimer] = useState(4);
   const [showAlert, setShowAlert] = useState(true);
@@ -28,7 +28,7 @@ export const Welcome = (props) => {
 
   return (
     <div className={showAlert ? "container" : "d-none"}>
-      <Alert variant="success">Welcome, {firstName + " " + lastName}</Alert>
+      <Alert variant="success">Buono shopping, {firstName}!</Alert>
     </div>
   );
 };

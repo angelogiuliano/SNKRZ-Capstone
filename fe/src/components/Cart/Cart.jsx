@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 export const Cart = () => {
@@ -12,25 +12,24 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const sliceCart = useSelector((state) => state.cart.cart);
   const cartItems = JSON.parse(localStorage.getItem("cart"));
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getPrice = () => {
+    const currentCartItems = JSON.parse(localStorage.getItem("cart"));
     let price = 0;
-    cartItems.forEach((item) => {
+    currentCartItems.forEach((item) => {
       price += item.price * item.quantity;
     });
     setTotalPrice(price);
   };
 
-  const handleQuantityChange = (id, quantity) => {
-    dispatch(updateQuantity({ id, quantity }));
+  const handleQuantityChange = (_id, quantity) => {
+    dispatch(updateQuantity({ _id, quantity }));
   };
 
   const handleCheckout = async () => {
     const currentCart = JSON.parse(localStorage.getItem("cart"));
-    const user = localStorage.getItem("auth")
-    console.log(user);
-    console.log(currentCart);
+    const user = localStorage.getItem("auth");
 
     try {
       const response = await axios.post(
@@ -38,7 +37,6 @@ export const Cart = () => {
         currentCart,
         user
       );
-
 
       if (response.data.url) {
         console.log(response.data.url);
@@ -56,9 +54,9 @@ export const Cart = () => {
   return (
     <div className="container d-flex flex-wrap">
       <h2>Cart</h2>
-      {cartItems.map((item) => {
+      {cartItems.map((item, i) => {
         return (
-          <div className="my-2 w-100" key={item._id}>
+          <div className="my-2 w-100" key={i}>
             <img src={item.src} alt="" width={200} />
             <h5>{item.name}</h5>
             <p>
@@ -76,7 +74,7 @@ export const Cart = () => {
               />
             </p>
             <button
-              onClick={() => dispatch(removeFromCart({ id: item._id }))}
+              onClick={() => dispatch(removeFromCart(item._id))}
               className="log-btn"
             >
               Remove
