@@ -1,7 +1,7 @@
 import carousel1 from "../../imgs/DeWatermark.ai_1713263267276.png";
 import carousel2 from "../../imgs/maxresdefault.jpg";
-import carousel3 from '../../imgs/daeff542082129.57bf843f640b4.jpg'
-import './Carousel.css'
+import carousel3 from "../../imgs/daeff542082129.57bf843f640b4.jpg";
+import "./Carousel.css";
 
 export const Carousel = () => {
   return (
@@ -39,11 +39,7 @@ export const Carousel = () => {
           <img src={carousel2} className="d-block w-100" alt="..." />
         </a>
         <a href="/products/yeezy%20350" className="carousel-item">
-          <img
-            src={carousel3}
-            className="d-block w-100"
-            alt="..."
-          />
+          <img src={carousel3} className="d-block w-100" alt="..." />
         </a>
       </div>
       <button

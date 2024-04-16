@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./Favorites.css";
 import { removeFromFavorites } from "../../helpers/removeFromFavorites";
 import { useNavigate } from "react-router-dom";
+import img from "../../imgs/Untitled-1.png";
 
 export const Favorites = () => {
   const [itemsInfo, setItemsInfo] = useState([]);
@@ -78,8 +79,14 @@ export const Favorites = () => {
       />
     </div>
   ) : (
-    <div className="container">
-      <p className="">Aggiungi elementi ai preferiti</p>
+    <div className="container text-center my-5">
+      <img src={img} alt="" width={150} />
+      <h4>Non hai alcun elemento nei preferiti</h4>
+      <p className="">
+        Aggiungi elementi ai preferiti cliccando il cuoricino sul prodotto che
+        ti piace, <br />o aggiungendolo ai preferiti direttamente dalla sua
+        pagina dedicata
+      </p>
     </div>
   );
 };

@@ -33,7 +33,7 @@ export const TrendingProducts = (props) => {
 
   return (
     <div className="mx-4">
-      <ProductLayout trendingProducts={trendingProducts} text={text}/>
+      <ProductLayout trendingProducts={trendingProducts} text={text} />
     </div>
   );
 };

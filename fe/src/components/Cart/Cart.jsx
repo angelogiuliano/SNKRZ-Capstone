@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import shoppingBag from "../../imgs/PngItem_4483996.png";
 
 export const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -54,34 +53,46 @@ export const Cart = () => {
   return (
     <div className="container d-flex flex-wrap">
       <h2>Cart</h2>
-      {cartItems.map((item, i) => {
-        return (
-          <div className="my-2 w-100" key={i}>
-            <img src={item.src} alt="" width={200} />
-            <h5>{item.name}</h5>
-            <p>
-              <b>Price:</b> ${item.price}
-            </p>
-            <p>
-              <b>Quantity:</b>{" "}
-              <input
-                type="number"
-                defaultValue={item.quantity}
-                onChange={(e) =>
-                  handleQuantityChange(item._id, parseInt(e.target.value))
-                }
-                min={1}
-              />
-            </p>
-            <button
-              onClick={() => dispatch(removeFromCart(item._id))}
-              className="log-btn"
-            >
-              Remove
-            </button>
-          </div>
-        );
-      })}
+      {cartItems.length > 0 ? (
+        cartItems.map((item, i) => {
+          return (
+            <div className="my-2 w-100" key={i}>
+              <img src={item.src} alt="" width={200} />
+              <h5>{item.name}</h5>
+              <p>
+                <b>Price:</b> ${item.price}
+              </p>
+              <p>
+                <b>Quantity:</b>{" "}
+                <input
+                  type="number"
+                  defaultValue={item.quantity}
+                  onChange={(e) =>
+                    handleQuantityChange(item._id, parseInt(e.target.value))
+                  }
+                  min={1}
+                />
+              </p>
+              <button
+                onClick={() => dispatch(removeFromCart(item._id))}
+                className="log-btn"
+              >
+                Remove
+              </button>
+            </div>
+          );
+        })
+      ) : (
+        <div className="my-2 w-100 text-center">
+          <img src={shoppingBag} alt="" width={100} />
+          <h4 className="mt-3">Non hai alcun elemento nel carrello</h4>
+          <p className="">
+            Aggiungi elementi al carrello cliccando la relativa icona sul
+            prodotto che ti piace, <br />o aggiungendolo direttamente dalla sua
+            pagina dedicata
+          </p>
+        </div>
+      )}
       <div className="checkout d-flex flex-wrap gap-3 my-4 w-100 justify-content-center">
         <h5 className="m-0 p-0">Total: ${totalPrice}</h5>
         <button onClick={() => handleCheckout()} className="w-100 log-btn">

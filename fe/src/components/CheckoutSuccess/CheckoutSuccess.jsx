@@ -15,13 +15,15 @@ export const CheckoutSuccess = () => {
       }
     }, 1000);
 
-    return () => clearTimeout(timeoutId)
+    return () => clearTimeout(timeoutId);
   }, [timer]);
 
   return (
     <div className="container">
       <h4 className="text-center">Grazie per il tuo acquisto!</h4>
-      <p className="text-center">Verrai reindirizzato alla pagina home tra {timer} secondi..</p>
+      <p className="text-center">
+        Verrai reindirizzato alla pagina home tra {timer} secondi..
+      </p>
     </div>
   );
 };

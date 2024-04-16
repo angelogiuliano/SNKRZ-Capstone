@@ -78,7 +78,12 @@ export const Card = (props) => {
       >
         Questo elemento è già stato aggiunto al carrello
       </Alert>
-      <div className={`d-flex col flex-wrap position-relative ${window.innerWidth <= 576 ? 'justify-content-center' : ''}`} id={_id}>
+      <div
+        className={`d-flex col flex-wrap position-relative ${
+          window.innerWidth <= 576 ? "justify-content-center" : ""
+        }`}
+        id={_id}
+      >
         <div className="buttons-cont d-flex flex-wrap">
           <button
             onClick={(e) => handleFavorite(e)}
