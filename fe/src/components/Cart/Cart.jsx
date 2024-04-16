@@ -11,7 +11,6 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const sliceCart = useSelector((state) => state.cart.cart);
   const cartItems = JSON.parse(localStorage.getItem("cart"));
-  // const navigate = useNavigate();
 
   const getPrice = () => {
     const currentCartItems = JSON.parse(localStorage.getItem("cart"));
@@ -46,6 +45,11 @@ export const Cart = () => {
     }
   };
 
+  const handleRemoveFromCart = (_id) => {
+    dispatch(removeFromCart(_id));
+    window.location.reload();
+  };
+
   useEffect(() => {
     getPrice();
   }, [sliceCart]);
@@ -74,7 +78,7 @@ export const Cart = () => {
                 />
               </p>
               <button
-                onClick={() => dispatch(removeFromCart(item._id))}
+                onClick={() => handleRemoveFromCart(item._id)}
                 className="log-btn"
               >
                 Remove

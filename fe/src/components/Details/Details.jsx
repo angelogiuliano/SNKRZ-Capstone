@@ -82,6 +82,7 @@ export const Details = () => {
         setAlreadyInCart(false);
         dispatch(removeFromCart(details.styleID));
       }
+      window.location.reload();
     } else {
       navigate("/login");
     }

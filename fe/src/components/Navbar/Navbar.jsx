@@ -9,9 +9,6 @@ export const Navbar = () => {
   const [updatedCartItems, setUpdatedCartItems] = useState(null);
 
   const navigate = useNavigate();
-  const cartItems = localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [];
   const session = localStorage.getItem("auth");
 
   const toggleNav = () => {
@@ -75,7 +72,7 @@ export const Navbar = () => {
     setUpdatedCartItems(updatedCart);
 
     return () => clearTimeout(timeoutId);
-  }, [searchedItem, cartItems]);
+  }, [searchedItem]);
 
   return (
     <div className="w-100 container">
