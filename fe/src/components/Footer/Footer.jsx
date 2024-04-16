@@ -1,13 +1,28 @@
 import "./Footer.css";
+import { useEffect, useState } from "react";
 
 export const Footer = () => {
+  const [textCenter, setTextCenter] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 576) {
+        setTextCenter(true);
+      } else {
+        setTextCenter(false);
+      }
+    });
+  }, []);
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="row">
-          <div className="col-md-4">
-            <h5>Air Jordan</h5>
-            <ul>
+          <div
+            className={`col-md-4 ${textCenter ? "text-center" : "text-left"}`}
+          >
+            <h5 className="d-block">Air Jordan</h5>
+            <ul className="w-100">
               <li>
                 <a href="/products/air-jordan">Air Jordan</a>
               </li>
@@ -24,7 +39,9 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col-md-4">
+          <div
+            className={`col-md-4 ${textCenter ? "text-center" : "text-left"}`}
+          >
             <h5>New Balance</h5>
             <ul>
               <li>
@@ -41,7 +58,9 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col-md-4">
+          <div
+            className={`col-md-4 ${textCenter ? "text-center" : "text-left"}`}
+          >
             <h5>Popular Brands</h5>
             <ul>
               <li>

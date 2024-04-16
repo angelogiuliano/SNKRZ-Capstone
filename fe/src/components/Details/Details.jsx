@@ -67,7 +67,6 @@ export const Details = () => {
   const addToCartFunction = () => {
     if (session) {
       const currentCart = localStorage.getItem("cart");
-      console.log(details.styleID);
       if (!currentCart.includes(details.styleID)) {
         setAlreadyInCart(true);
         dispatch(

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 export const Navbar = () => {
   const [searchedItem, setSearchedItem] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(true);
+  const [updatedCartItems, setUpdatedCartItems] = useState(null);
 
   const navigate = useNavigate();
   const cartItems = localStorage.getItem("cart")
@@ -70,6 +71,9 @@ export const Navbar = () => {
       }
     }, 500);
 
+    const updatedCart = JSON.parse(localStorage.getItem("cart"));
+    setUpdatedCartItems(updatedCart);
+
     return () => clearTimeout(timeoutId);
   }, [searchedItem, cartItems]);
 
@@ -114,7 +118,7 @@ export const Navbar = () => {
             Favorites
           </button>
           <button onClick={() => handleCart()} className="log-btn cart-handler">
-            Cart {cartItems ? cartItems.length : 0}
+            Cart {updatedCartItems ? updatedCartItems.length : 0}
           </button>
         </div>
 
@@ -167,7 +171,7 @@ export const Navbar = () => {
           onClick={() => handleCart()}
           className="log-btn cart-handler w-50"
         >
-          Cart {cartItems ? cartItems.length : 0}
+          Cart {updatedCartItems ? updatedCartItems.length : 0}
         </button>
       </div>
       <div className="gradient"></div>
