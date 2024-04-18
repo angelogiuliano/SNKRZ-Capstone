@@ -30,11 +30,13 @@ export const Navbar = () => {
   const handleLogin = () => {
     localStorage.setItem("auth", "");
     navigate("/login");
+    navigate(0);
   };
 
   const handleSignUp = () => {
     localStorage.setItem("auth", "");
     navigate("/login?showSignUp=true");
+    navigate(0);
   };
 
   const handleLogout = () => {
@@ -43,6 +45,7 @@ export const Navbar = () => {
     localStorage.setItem("alertShown", false);
     localStorage.setItem("cart", JSON.stringify([]));
     navigate("/login");
+    navigate(0);
   };
 
   const handleFavorites = () => {
@@ -51,6 +54,7 @@ export const Navbar = () => {
     } else {
       navigate("/login");
     }
+    navigate(0);
   };
 
   const handleCart = () => {
@@ -59,6 +63,7 @@ export const Navbar = () => {
     } else {
       navigate("/login");
     }
+    navigate(0);
   };
 
   useEffect(() => {
