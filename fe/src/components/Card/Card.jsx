@@ -41,14 +41,18 @@ export const Card = (props) => {
 
   const handleCart = () => {
     const currentCart = localStorage.getItem("cart");
-    if (currentCart.includes(_id)) {
-      setTimer(3);
-      setShowAlert(true);
-      return;
+    if (session) {
+      if (currentCart.includes(_id)) {
+        setTimer(3);
+        setShowAlert(true);
+        return;
+      } else {
+        dispatch(addToCart({ src, name, price, _id, quantity: 1 }));
+      }
+      navigate(0);
     } else {
-      dispatch(addToCart({ src, name, price, _id, quantity: 1 }));
+      navigate("/login");
     }
-    navigate(0);
   };
 
   useEffect(() => {
