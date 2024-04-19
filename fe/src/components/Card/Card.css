@@ -12,6 +12,7 @@
 
 .heart:hover {
   color: red;
+  -webkit-text-fill-color: red;
 }
 
 .favorite {
@@ -32,6 +33,7 @@
 
 .cart-btn:hover {
   color: green;
+  -webkit-text-fill-color: green;
 }
 
 .sneaker-card {
