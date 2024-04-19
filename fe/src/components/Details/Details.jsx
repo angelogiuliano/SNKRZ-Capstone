@@ -88,13 +88,14 @@ export const Details = () => {
   };
 
   const checkIfAlreadyInCart = () => {
-    const currentCart = localStorage.getItem("cart");
+    const currentCart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
     if (currentCart.includes(details.styleID)) {
       setAlreadyInCart(true);
     } else {
       setAlreadyInCart(false);
     }
-    console.log(alreadyInCart);
   };
 
   useEffect(() => {
