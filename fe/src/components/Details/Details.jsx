@@ -41,7 +41,6 @@ export const Details = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getDetails/${id.id}`
       );
-      checkFavorites();
       setDetails(response.data);
     } catch (error) {
       console.log(error);
