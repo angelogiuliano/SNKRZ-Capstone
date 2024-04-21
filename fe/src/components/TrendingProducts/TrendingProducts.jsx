@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card } from "../Card/Card";
 import ProductLayout from "../ProductLayout/ProductLayout";
 
 export const TrendingProducts = (props) => {
   const { limit, shuffleArray, text } = props;
   const [trendingProducts, setTrendingProducts] = useState([]);
+  const [error, setError] = useState(null);
 
   const shuffle = (array) => {
     array.sort(() => Math.random() - 0.5);
@@ -16,14 +16,20 @@ export const TrendingProducts = (props) => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/mostPopular/${limit}`
       );
-      if (shuffleArray && limit > 10) {
-        shuffle(response.data.splice(0, 8));
-        setTrendingProducts(response.data);
+      if (response.status === 200) {
+        if (shuffleArray && limit > 10) {
+          shuffle(response.data.splice(0, 8));
+          setTrendingProducts(response.data);
+        } else {
+          setTrendingProducts(response.data);
+        }
+        setError(false);
       } else {
-        setTrendingProducts(response.data);
+        setError(true);
       }
     } catch (error) {
       console.log(error);
+      setError(true);
     }
   };
 
@@ -33,7 +39,11 @@ export const TrendingProducts = (props) => {
 
   return (
     <div className="mx-4">
-      <ProductLayout trendingProducts={trendingProducts} text={text} />
+      {!error ? (
+        <ProductLayout trendingProducts={trendingProducts} text={text} />
+      ) : (
+        <div>{limit < 10 && <h4>Errore, riprova più tardi</h4>}</div>
+      )}
     </div>
   );
 };

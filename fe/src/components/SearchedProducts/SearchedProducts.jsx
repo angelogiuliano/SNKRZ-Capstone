@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Card } from "../Card/Card";
-import { Alert } from "react-bootstrap";
 import ProductLayout from "../ProductLayout/ProductLayout";
+import productNotFound from "../../imgs/product_not_found2-removebg-preview.png";
 
 export const SearchedProducts = () => {
   const [foundProducts, setFoundProducts] = useState([]);
@@ -31,7 +30,10 @@ export const SearchedProducts = () => {
     <div className="mx-4 d-flex flex-wrap gap-3">
       {error && (
         <div className="text-center w-100">
-          <Alert variant={"danger"}>Error, please try again later</Alert>
+          <img src={productNotFound} alt="" width={400}/>
+          <h5 className="my-3">
+            Non sono stati trovati prodotti inerenti, riprova
+          </h5>
         </div>
       )}
       {!error && foundProducts.length < 1 && (
