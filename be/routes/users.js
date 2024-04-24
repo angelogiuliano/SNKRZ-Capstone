@@ -27,6 +27,7 @@ router.post("/createUser", validateUserBody, async (req, res) => {
     email: req.body.email,
     password: hashedPassword,
     favorites: req.body.favorites,
+    isAdmin: req.body.isAdmin,
   });
 
   console.log(newUser);

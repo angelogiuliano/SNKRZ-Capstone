@@ -4,6 +4,19 @@ const router = express.Router();
 const stripe = Stripe(process.env.STRIPE_KEY);
 require("dotenv").config();
 
+router.get("/payments", async (req, res) => {
+  try {
+    const payments = await stripe.paymentIntents.list();
+
+    res.json(payments);
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: "Internal server error",
+    });
+  }
+});
+
 router.post("/create-checkout-session", async (req, res) => {
   const line_items = req.body.map((item) => {
     return {
@@ -22,8 +35,6 @@ router.post("/create-checkout-session", async (req, res) => {
     };
   });
 
-  console.log(line_items);
-
   const session = await stripe.checkout.sessions.create({
     success_url: `${process.env.FE_URL}/checkout-success`,
     cancel_url: `${process.env.FE_URL}/cart`,
@@ -32,6 +43,8 @@ router.post("/create-checkout-session", async (req, res) => {
   });
 
   res.send({ url: session.url });
+
+  console.log(res);
 });
 
 module.exports = router;

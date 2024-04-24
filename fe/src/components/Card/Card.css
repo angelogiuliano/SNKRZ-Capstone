@@ -37,15 +37,15 @@
 }
 
 .sneaker-card {
-  position: relative; /* Per rendere i bottoni assoluti relativi al genitore */
+  position: relative;
   width: 250px;
   overflow: hidden;
   height: auto;
-  transition: transform 0.2s ease; /* Corretto il nome della transizione */
+  transition: transform 0.2s ease;
 }
 
 .sneaker-card:hover {
-  transform: scale(1.05); /* Corretto il nome della trasformazione */
+  transform: scale(1.05);
 }
 
 .card-image {

@@ -12,6 +12,7 @@ import { CheckoutSuccess } from "./components/CheckoutSuccess/CheckoutSuccess";
 import ProtectedRoutes from "./helpers/ProtectedRoutes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { Dashboard } from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/details/:id" element={<Details />} />
           <Route path="/products/:name" element={<SearchedProducts />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />

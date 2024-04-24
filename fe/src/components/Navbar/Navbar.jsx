@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
 export const Navbar = () => {
   const [searchedItem, setSearchedItem] = useState("");
@@ -10,6 +10,7 @@ export const Navbar = () => {
 
   const navigate = useNavigate();
   const session = localStorage.getItem("auth");
+  const decodedSession = session ? jwtDecode(session) : "";
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -66,6 +67,15 @@ export const Navbar = () => {
     navigate(0);
   };
 
+  const handleDashboard = () => {
+    if (session) {
+      navigate('/dashboard')
+    } else {
+      navigate('/login')
+    }
+    navigate(0);
+  }
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchedItem) {
@@ -78,6 +88,8 @@ export const Navbar = () => {
 
     return () => clearTimeout(timeoutId);
   }, [searchedItem]);
+
+  console.log();
 
   return (
     <div className="w-100 container">
@@ -111,6 +123,13 @@ export const Navbar = () => {
               <button onClick={() => handleLogout()} className="log-btn">
                 Logout
               </button>{" "}
+              {decodedSession.isAdmin === true ? (
+                <button onClick={() => handleDashboard()} className="log-btn">
+                  Dashboard
+                </button>
+              ) : (
+                ""
+              )}
             </>
           )}
           <button
@@ -161,6 +180,13 @@ export const Navbar = () => {
             <button onClick={() => handleLogout()} className="log-btn w-50">
               Logout
             </button>{" "}
+            {decodedSession.isAdmin === true ? (
+              <button onClick={() => handleDashboard()} className="log-btn w-50">
+                Dashboard
+              </button>
+            ) : (
+              ""
+            )}
           </>
         )}
         <button
