@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Alert from "react-bootstrap/Alert";
 
 export const Welcome = (props) => {
-  const { firstName } = props.userInfo;
+  const { firstName, isAdmin } = props.userInfo;
 
   const [timer, setTimer] = useState(4);
   const [showAlert, setShowAlert] = useState(true);
@@ -27,8 +27,10 @@ export const Welcome = (props) => {
   }, [timer, showAlert]);
 
   return (
-    <div className={showAlert ? "container" : "d-none"}>
-      <Alert variant="success">Buono shopping, {firstName}!</Alert>
+    <div>
+      {!isAdmin && <div className={showAlert ? "container" : "d-none"}>
+        <Alert variant="success">Buono shopping, {firstName}!</Alert>
+      </div>}
     </div>
   );
 };

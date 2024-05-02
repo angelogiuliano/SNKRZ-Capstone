@@ -30,29 +30,41 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <div className="container">
-      <Table className="" striped hover >
-        <thead>
-          <tr>
-            <th>Transaction Id</th>
-            <th>Amount</th>
-            <th>Currency</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {paymentsData.map((data, i) => {
-            return (
+    <div>
+      {paymentsData.length < 1 ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <img
+            src="https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif"
+            alt=""
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+        </div>
+      ) : (
+        <div className="container">
+          <Table className="" striped hover>
+            <thead>
               <tr>
-                <td>{data.id}</td>
-                <td>{data.amount / 100}</td>
-                <td>{data.currency}</td>
-                <td>{data.status}</td>
+                <th>Transaction Id</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Status</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+            </thead>
+            <tbody>
+              {paymentsData.map((data, i) => {
+                return (
+                  <tr>
+                    <td>{data.id}</td>
+                    <td>{data.amount / 100}</td>
+                    <td>{data.currency}</td>
+                    <td>{data.status}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
+      )}
     </div>
   );
 };
