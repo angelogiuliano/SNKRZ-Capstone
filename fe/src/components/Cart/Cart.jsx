@@ -4,6 +4,7 @@ import { removeFromCart, updateQuantity } from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import shoppingBag from "../../imgs/PngItem_4483996.png";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -11,6 +12,7 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const sliceCart = useSelector((state) => state.cart.cart);
   const cartItems = JSON.parse(localStorage.getItem("cart"));
+  const navigate = useNavigate();
 
   const getPrice = () => {
     const currentCartItems = JSON.parse(localStorage.getItem("cart"));
@@ -53,6 +55,15 @@ export const Cart = () => {
   useEffect(() => {
     getPrice();
   }, [sliceCart]);
+
+  useEffect(() => {
+    const session = localStorage.getItem("auth");
+    if (session) {
+      return;
+    } else {
+      navigate("/");
+    }
+  });
 
   return (
     <div className="container d-flex flex-wrap">
