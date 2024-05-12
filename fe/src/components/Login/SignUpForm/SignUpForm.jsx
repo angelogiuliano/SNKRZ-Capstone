@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
   const [signUpData, setSignUpData] = useState({});
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const onChangeFn = (e) => {
@@ -20,14 +22,16 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      const response = await axios.post(
         `${process.env.REACT_APP_SERVER_BASE_URL}/createUser`,
         signUpData
       );
+      console.log(response);
       setToggleShowForm(!toggleShowForm);
       navigate("/login");
     } catch (error) {
       console.error(error);
+      setError("Email already registered");
     }
   };
 
@@ -46,6 +50,11 @@ export const SignUpForm = ({ toggleShowForm, setToggleShowForm }) => {
           Fai il login
         </button>
       </div>
+      {error && (
+        <Alert variant="danger">
+          {error} <br />
+        </Alert>
+      )}
       <div className="mb-3">
         <input
           className="form-control shadow-none rounded-0 border-0 border-bottom border-gray"

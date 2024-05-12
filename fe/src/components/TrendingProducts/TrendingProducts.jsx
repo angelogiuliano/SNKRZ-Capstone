@@ -42,7 +42,7 @@ export const TrendingProducts = (props) => {
       {!error ? (
         <ProductLayout trendingProducts={trendingProducts} text={text} />
       ) : (
-        <div>{limit < 10 && <h4>Errore, riprova più tardi</h4>}</div>
+        <div className="container">{limit < 10 && <h4>Errore, riprova più tardi</h4>}</div>
       )}
     </div>
   );
