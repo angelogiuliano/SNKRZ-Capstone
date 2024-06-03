@@ -1,7 +1,7 @@
 
 # SNKRZ
 
-(![SCR-20240521-loyc](https://github.com/angelogiuliano/SNKRZ-Capstone/assets/117686551/cb816e77-c26c-4d81-ba57-689456e74a08)
+![SCR-20240521-loyc](https://github.com/angelogiuliano/SNKRZ-Capstone/assets/117686551/cb816e77-c26c-4d81-ba57-689456e74a08)
 
 
 SNKRZ è una piattaforma di e-commerce progettata per gli appassionati di sneaker. Offriamo un'esperienza utente fluida e moderna, permettendo agli utenti di esplorare, salvare e acquistare i loro modelli preferiti con facilità.
