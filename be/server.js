@@ -10,8 +10,8 @@ const app = express();
 // import routes
 const sneaksRoute = require("./routes/sneaks");
 const usersRoute = require("./routes/users");
-const loginRoute = require('./routes/login');
-const checkoutRoute = require('./routes/checkout')
+const loginRoute = require("./routes/login");
+const checkoutRoute = require("./routes/checkout");
 
 // middlewares
 app.use(express.json());
